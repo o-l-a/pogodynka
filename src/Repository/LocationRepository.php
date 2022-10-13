@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Country;
 use App\Entity\Location;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +39,22 @@ class LocationRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @throws NonUniqueResultException
+     */
+    public function findOneByCountryAndCity(Country $country, string $city): ?Location
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.country = :country')
+            ->andWhere('l.city = :city')
+            ->setParameters([
+                'country' => $country,
+                'city' => $city
+            ])
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 //    /**
