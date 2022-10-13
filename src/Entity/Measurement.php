@@ -43,10 +43,10 @@ class Measurement
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: '0')]
     private ?string $precipitation = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: '0')]
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: '1')]
     private ?string $rain = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: '0')]
+    #[ORM\Column(type: Types::DECIMAL, precision: 5, scale: '1')]
     private ?string $snow = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: '0')]

@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Location;
 use App\Entity\Measurement;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -37,6 +38,22 @@ class MeasurementRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    /**
+     * @return Measurement[] Returns an array of Measurement objects
+     */
+    public function findByLocation(Location $location): array
+    {
+        $qb = $this->createQueryBuilder('m');
+        $qb->where('m.location = :location')
+            ->setParameter('location', $location)
+            ->andWhere('m.date > :now')
+            ->setParameter('now', date('Y-m-d'));
+
+        $query = $qb->getQuery();
+        $result = $query->getResult();
+        return $result;
     }
 
 //    /**
