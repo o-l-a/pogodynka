@@ -25,7 +25,9 @@ class MeasurementController extends AbstractController
     public function new(Request $request, MeasurementRepository $measurementRepository): Response
     {
         $measurement = new Measurement();
-        $form = $this->createForm(MeasurementType::class, $measurement);
+        $form = $this->createForm(MeasurementType::class, $measurement, [
+            'validation_groups' => ['new']
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +53,9 @@ class MeasurementController extends AbstractController
     #[Route('/{id}/edit', name: 'app_measurement_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Measurement $measurement, MeasurementRepository $measurementRepository): Response
     {
-        $form = $this->createForm(MeasurementType::class, $measurement);
+        $form = $this->createForm(MeasurementType::class, $measurement, [
+            'validation_groups' => ['edit']
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

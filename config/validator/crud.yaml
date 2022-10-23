@@ -2,20 +2,137 @@ App\Entity\Country:
   properties:
     name:
       - NotBlank:
-          groups: ['create', 'edit', 'update']
+          groups: ['new', 'edit']
     code:
       - NotBlank:
-          groups: ['create', 'edit', 'update']
+          groups: ['new', 'edit']
       - Length:
           min: 2
           max: 2
-          groups: ['create', 'edit', 'update']
+          groups: ['new', 'edit']
 
 App\Entity\Location:
   properties:
     city:
       - NotBlank:
-          groups: ['create', 'edit', 'update']
+          groups: ['new', 'edit']
     country:
       - NotBlank:
-          groups: [ 'create', 'edit', 'update' ]
+          groups: ['new', 'edit']
+    latitude:
+      - NotBlank:
+          groups: ['new', 'edit']
+      - Range:
+          min: -90
+          max: 90
+          groups: ['new', 'edit']
+    longitude:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: -180
+          max: 180
+          groups: [ 'new', 'edit' ]
+
+App\Entity\Measurement:
+  properties:
+    location:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+    date:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+    description:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+    temperature:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: -273
+          max: 273
+          groups: [ 'new', 'edit' ]
+    feelsLike:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: -273
+          max: 273
+          groups: [ 'new', 'edit' ]
+    tempMin:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: -273
+          max: 273
+          groups: [ 'new', 'edit' ]
+    tempMax:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: -273
+          max: 273
+          groups: [ 'new', 'edit' ]
+    pressure:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 100
+          max: 2000
+          groups: [ 'new', 'edit' ]
+    precipitation:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 100
+          groups: [ 'new', 'edit' ]
+    rain:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 2000
+          groups: [ 'new', 'edit' ]
+    snow:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 2000
+          groups: [ 'new', 'edit' ]
+    clouds:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 100
+          groups: [ 'new', 'edit' ]
+    humidity:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 100
+          groups: [ 'new', 'edit' ]
+    windSpeed:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 500
+          groups: [ 'new', 'edit' ]
+    windGustSpeed:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 500
+          groups: [ 'new', 'edit' ]
+    windDirection:
+      - NotBlank:
+          groups: [ 'new', 'edit' ]
+      - Range:
+          min: 0
+          max: 360
+          groups: [ 'new', 'edit' ]

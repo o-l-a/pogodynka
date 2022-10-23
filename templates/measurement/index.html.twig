@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Location</th>
                 <th>Date</th>
                 <th>Temperature</th>
                 <th>FeelsLike</th>
@@ -30,6 +31,7 @@
         {% for measurement in measurements %}
             <tr>
                 <td>{{ measurement.id }}</td>
+                <td>{{ measurement.location.city }}</td>
                 <td>{{ measurement.date ? measurement.date|date('Y-m-d') : '' }}</td>
                 <td>{{ measurement.temperature }}</td>
                 <td>{{ measurement.feelsLike }}</td>

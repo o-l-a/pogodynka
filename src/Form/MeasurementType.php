@@ -2,7 +2,10 @@
 
 namespace App\Form;
 
+use App\Entity\Location;
 use App\Entity\Measurement;
+use App\Entity\WeatherDescription;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,8 +29,14 @@ class MeasurementType extends AbstractType
             ->add('windSpeed')
             ->add('windGustSpeed')
             ->add('windDirection')
-            ->add('location')
-            ->add('description')
+            ->add('location', EntityType::class, [
+                'class' => Location::class,
+                'choice_label' => 'city',
+            ])
+            ->add('description', EntityType::class, [
+                'class' => WeatherDescription::class,
+                'choice_label' => 'description',
+            ])
         ;
     }
 

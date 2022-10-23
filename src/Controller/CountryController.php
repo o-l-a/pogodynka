@@ -25,7 +25,9 @@ class CountryController extends AbstractController
     public function new(Request $request, CountryRepository $countryRepository): Response
     {
         $country = new Country();
-        $form = $this->createForm(CountryType::class, $country);
+        $form = $this->createForm(CountryType::class, $country, [
+            'validation_groups' => ['new']
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -51,7 +53,9 @@ class CountryController extends AbstractController
     #[Route('/{id}/edit', name: 'app_country_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Country $country, CountryRepository $countryRepository): Response
     {
-        $form = $this->createForm(CountryType::class, $country);
+        $form = $this->createForm(CountryType::class, $country, [
+            'validation_groups' => ['edit']
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
