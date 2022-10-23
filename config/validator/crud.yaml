@@ -1,0 +1,21 @@
+App\Entity\Country:
+  properties:
+    name:
+      - NotBlank:
+          groups: ['create', 'edit', 'update']
+    code:
+      - NotBlank:
+          groups: ['create', 'edit', 'update']
+      - Length:
+          min: 2
+          max: 2
+          groups: ['create', 'edit', 'update']
+
+App\Entity\Location:
+  properties:
+    city:
+      - NotBlank:
+          groups: ['create', 'edit', 'update']
+    country:
+      - NotBlank:
+          groups: [ 'create', 'edit', 'update' ]

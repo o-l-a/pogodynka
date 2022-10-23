@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherDescription index{% endblock %}
+
+{% block body %}
+    <h1>WeatherDescription index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Description</th>
+                <th>Icon</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for weather_description in weather_descriptions %}
+            <tr>
+                <td>{{ weather_description.id }}</td>
+                <td>{{ weather_description.description }}</td>
+                <td>{{ weather_description.icon }}</td>
+                <td>
+                    <a href="{{ path('app_weather_description_show', {'id': weather_description.id}) }}">show</a>
+                    <a href="{{ path('app_weather_description_edit', {'id': weather_description.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_weather_description_new') }}">Create new</a>
+{% endblock %}

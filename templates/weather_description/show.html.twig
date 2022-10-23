@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}WeatherDescription{% endblock %}
+
+{% block body %}
+    <h1>WeatherDescription</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ weather_description.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ weather_description.description }}</td>
+            </tr>
+            <tr>
+                <th>Icon</th>
+                <td>{{ weather_description.icon }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_weather_description_index') }}">back to list</a>
+
+    <a href="{{ path('app_weather_description_edit', {'id': weather_description.id}) }}">edit</a>
+
+    {{ include('weather_description/_delete_form.html.twig') }}
+{% endblock %}
