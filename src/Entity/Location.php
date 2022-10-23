@@ -18,7 +18,7 @@ class Location
     private ?string $city = null;
 
     #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: "CASCADE")]
     private ?Country $country = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 7)]

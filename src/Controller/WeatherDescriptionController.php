@@ -10,10 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/weather/description')]
 class WeatherDescriptionController extends AbstractController
 {
-    #[Route('/', name: 'app_weather_description_index', methods: ['GET'])]
     public function index(WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         return $this->render('weather_description/index.html.twig', [
@@ -21,7 +19,6 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_weather_description_new', methods: ['GET', 'POST'])]
     public function new(Request $request, WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         $weatherDescription = new WeatherDescription();
@@ -40,7 +37,6 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_weather_description_show', methods: ['GET'])]
     public function show(WeatherDescription $weatherDescription): Response
     {
         return $this->render('weather_description/show.html.twig', [
@@ -48,7 +44,6 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_weather_description_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, WeatherDescription $weatherDescription, WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         $form = $this->createForm(WeatherDescriptionType::class, $weatherDescription);
@@ -66,7 +61,6 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_weather_description_delete', methods: ['POST'])]
     public function delete(Request $request, WeatherDescription $weatherDescription, WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$weatherDescription->getId(), $request->request->get('_token'))) {

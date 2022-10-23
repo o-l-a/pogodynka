@@ -16,6 +16,10 @@
                 <td>{{ measurement.date ? measurement.date|date('Y-m-d') : '' }}</td>
             </tr>
             <tr>
+                <th>Description</th>
+                <td>{{ measurement.description ? measurement.description.description : '' }}</td>
+            </tr>
+            <tr>
                 <th>Temperature</th>
                 <td>{{ measurement.temperature }}</td>
             </tr>

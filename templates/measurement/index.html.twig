@@ -11,6 +11,7 @@
                 <th>Id</th>
                 <th>Location</th>
                 <th>Date</th>
+                <th>Description</th>
                 <th>Temperature</th>
                 <th>FeelsLike</th>
                 <th>TempMin</th>
@@ -33,6 +34,7 @@
                 <td>{{ measurement.id }}</td>
                 <td>{{ measurement.location.city }}</td>
                 <td>{{ measurement.date ? measurement.date|date('Y-m-d') : '' }}</td>
+                <td>{{ measurement.description ? measurement.description.description : '' }}</td>
                 <td>{{ measurement.temperature }}</td>
                 <td>{{ measurement.feelsLike }}</td>
                 <td>{{ measurement.tempMin }}</td>

@@ -136,3 +136,18 @@ App\Entity\Measurement:
           min: 0
           max: 360
           groups: [ 'new', 'edit' ]
+
+App\Entity\WeatherDescription:
+  properties:
+    description:
+      - NotBlank:
+          groups: ['new', 'edit']
+      - Length:
+          min: 3
+          max: 20
+          groups: [ 'new', 'edit' ]
+          minMessage: This value must be at least {{ limit }} characters long.
+          maxMessage: This value must be no more than {{ limit }} characters long.
+    icon:
+      - NotBlank:
+          groups: ['new', 'edit']

@@ -10,10 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/country')]
 class CountryController extends AbstractController
 {
-    #[Route('/', name: 'app_country_index', methods: ['GET'])]
     public function index(CountryRepository $countryRepository): Response
     {
         return $this->render('country/index.html.twig', [
@@ -21,7 +19,6 @@ class CountryController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_country_new', methods: ['GET', 'POST'])]
     public function new(Request $request, CountryRepository $countryRepository): Response
     {
         $country = new Country();
@@ -42,7 +39,6 @@ class CountryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_country_show', methods: ['GET'])]
     public function show(Country $country): Response
     {
         return $this->render('country/show.html.twig', [
@@ -50,7 +46,6 @@ class CountryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'app_country_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Country $country, CountryRepository $countryRepository): Response
     {
         $form = $this->createForm(CountryType::class, $country, [
@@ -70,7 +65,6 @@ class CountryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_country_delete', methods: ['POST'])]
     public function delete(Request $request, Country $country, CountryRepository $countryRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$country->getId(), $request->request->get('_token'))) {

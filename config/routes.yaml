@@ -9,12 +9,102 @@ weather_in_city:
     country: '[a-zA-Z]{2}'
     city: '[a-zA-Z\-]+'
 
-#app_country_index:
-#  path: /country
-#  controller: App\Controller\CountryController::index
-#  methods: GET
-#
-#app_country_new:
-#  path: /country/new
-#  controller: App\Controller\CountryController::new
-#  methods: GET|POST
+app_country_index:
+  path: /country
+  controller: App\Controller\CountryController::index
+  methods: GET
+
+app_country_new:
+  path: /country/new
+  controller: App\Controller\CountryController::new
+  methods: GET|POST
+
+app_country_show:
+  path: /country/{id}
+  controller: App\Controller\CountryController::show
+  methods: GET
+
+app_country_edit:
+  path: /country/{id}/edit
+  controller: App\Controller\CountryController::edit
+  methods: GET|POST
+
+app_country_delete:
+  path: /country/{id}
+  controller: App\Controller\CountryController::delete
+  methods: POST
+
+app_location_index:
+  path: /location
+  controller: App\Controller\LocationController::index
+  methods: GET
+
+app_location_new:
+  path: /location/new
+  controller: App\Controller\LocationController::new
+  methods: GET|POST
+
+app_location_show:
+  path: /location/{id}
+  controller: App\Controller\LocationController::show
+  methods: GET
+
+app_location_edit:
+  path: /location/{id}/edit
+  controller: App\Controller\LocationController::edit
+  methods: GET|POST
+
+app_location_delete:
+  path: /location/{id}
+  controller: App\Controller\LocationController::delete
+  methods: POST
+
+app_measurement_index:
+  path: /measurement
+  controller: App\Controller\MeasurementController::index
+  methods: GET
+
+app_measurement_new:
+  path: /measurement/new
+  controller: App\Controller\MeasurementController::new
+  methods: GET|POST
+
+app_measurement_show:
+  path: /measurement/{id}
+  controller: App\Controller\MeasurementController::show
+  methods: GET
+
+app_measurement_edit:
+  path: /measurement/{id}/edit
+  controller: App\Controller\MeasurementController::edit
+  methods: GET|POST
+
+app_measurement_delete:
+  path: /measurement/{id}
+  controller: App\Controller\MeasurementController::delete
+  methods: POST
+
+app_weather_description_index:
+  path: /weather/description
+  controller: App\Controller\WeatherDescriptionController::index
+  methods: GET
+
+app_weather_description_new:
+  path: /weather/description/new
+  controller: App\Controller\WeatherDescriptionController::new
+  methods: GET|POST
+
+app_weather_description_show:
+  path: /weather/description/{id}
+  controller: App\Controller\WeatherDescriptionController::show
+  methods: GET
+
+app_weather_description_edit:
+  path: /weather/description/{id}/edit
+  controller: App\Controller\WeatherDescriptionController::edit
+  methods: GET|POST
+
+app_weather_description_delete:
+  path: /weather/description/{id}
+  controller: App\Controller\WeatherDescriptionController::delete
+  methods: POST
