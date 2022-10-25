@@ -25,7 +25,7 @@
                 <th>WindSpeed</th>
                 <th>WindGustSpeed</th>
                 <th>WindDirection</th>
-                {% if is_granted(['ROLE_MEASUREMENT_SHOW', 'ROLE_MEASUREMENT_EDIT']) %}
+                {% if is_granted('ROLE_MEASUREMENT_SHOW') or is_granted('ROLE_MEASUREMENT_EDIT') %}
                     <th>actions</th>
                 {% endif %}
             </tr>

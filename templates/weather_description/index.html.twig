@@ -11,7 +11,7 @@
                 <th>Id</th>
                 <th>Description</th>
                 <th>Icon</th>
-                {% if is_granted(['ROLE_WEATHER_DESCRIPTION_SHOW', 'ROLE_WEATHER_DESCRIPTION_EDIT']) %}
+                {% if is_granted('ROLE_WEATHER_DESCRIPTION_SHOW') or is_granted('ROLE_WEATHER_DESCRIPTION_EDIT') %}
                     <th>actions</th>
                 {% endif %}
             </tr>
