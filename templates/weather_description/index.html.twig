@@ -11,7 +11,9 @@
                 <th>Id</th>
                 <th>Description</th>
                 <th>Icon</th>
-                <th>actions</th>
+                {% if is_granted(['ROLE_WEATHER_DESCRIPTION_SHOW', 'ROLE_WEATHER_DESCRIPTION_EDIT']) %}
+                    <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -21,8 +23,12 @@
                 <td>{{ weather_description.description }}</td>
                 <td>{{ weather_description.icon }}</td>
                 <td>
-                    <a href="{{ path('app_weather_description_show', {'id': weather_description.id}) }}">show</a>
-                    <a href="{{ path('app_weather_description_edit', {'id': weather_description.id}) }}">edit</a>
+                    {% if is_granted('ROLE_WEATHER_DESCRIPTION_SHOW') %}
+                        <a href="{{ path('app_weather_description_show', {'id': weather_description.id}) }}">show</a>
+                    {% endif %}
+                    {% if is_granted('ROLE_WEATHER_DESCRIPTION_EDIT') %}
+                        <a href="{{ path('app_weather_description_edit', {'id': weather_description.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -33,5 +39,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_weather_description_new') }}">Create new</a>
+    {% if is_granted('ROLE_WEATHER_DESCRIPTION_NEW') %}
+        <a href="{{ path('app_weather_description_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

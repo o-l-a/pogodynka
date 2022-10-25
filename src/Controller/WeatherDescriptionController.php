@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\WeatherDescription;
 use App\Form\WeatherDescriptionType;
 use App\Repository\WeatherDescriptionRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WeatherDescriptionController extends AbstractController
 {
+    #[IsGranted('ROLE_WEATHER_DESCRIPTION_INDEX')]
     public function index(WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         return $this->render('weather_description/index.html.twig', [
@@ -19,6 +21,7 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_WEATHER_DESCRIPTION_NEW')]
     public function new(Request $request, WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         $weatherDescription = new WeatherDescription();
@@ -37,6 +40,7 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_WEATHER_DESCRIPTION_SHOW')]
     public function show(WeatherDescription $weatherDescription): Response
     {
         return $this->render('weather_description/show.html.twig', [
@@ -44,6 +48,7 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_WEATHER_DESCRIPTION_EDIT')]
     public function edit(Request $request, WeatherDescription $weatherDescription, WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         $form = $this->createForm(WeatherDescriptionType::class, $weatherDescription);
@@ -61,6 +66,7 @@ class WeatherDescriptionController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_WEATHER_DESCRIPTION_DELETE')]
     public function delete(Request $request, WeatherDescription $weatherDescription, WeatherDescriptionRepository $weatherDescriptionRepository): Response
     {
         if ($this->isCsrfTokenValid('delete'.$weatherDescription->getId(), $request->request->get('_token'))) {
