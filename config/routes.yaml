@@ -108,3 +108,7 @@ app_weather_description_delete:
   path: /weather/description/{id}
   controller: App\Controller\WeatherDescriptionController::delete
   methods: POST
+
+app_logout:
+  path: /logout
+  methods: GET

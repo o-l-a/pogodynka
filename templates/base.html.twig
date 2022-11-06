@@ -28,6 +28,9 @@
             {% if is_granted('ROLE_WEATHER_DESCRIPTION_INDEX') %}
                 <li><a href="{{ path('app_weather_description_index') }}">Descriptions</a></li>
             {% endif %}
+            {% if app.user %}
+            <li><a href="{{ path('app_logout') }}">Log out</a></li>
+            {% endif %}
         </ul>
     {% endblock %}
         {% block body %}{% endblock %}
