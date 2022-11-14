@@ -13,7 +13,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
     name: 'weather:country-city',
-    description: 'Add a short description for your command',
+    description: 'Get weather forecast for the location specified by country and city.',
 )]
 class WeatherCountryCityCommand extends Command
 {
@@ -29,24 +29,40 @@ class WeatherCountryCityCommand extends Command
     {
         $this
             ->addOption('country', null, InputOption::VALUE_REQUIRED, 'Country')
+            ->addOption('city', null, InputOption::VALUE_REQUIRED, 'City')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $io = new SymfonyStyle($input, $output);
-        $arg1 = $input->getArgument('arg1');
-
-        if ($arg1) {
-            $io->note(sprintf('You passed an argument: %s', $arg1));
+        $country = $input->getOption('country');
+        $city = $input->getOption('city');
+        $measurements = $this->weatherUtil->getWeatherForCountryAndCity($country, $city);
+        $measurements_array = [];
+        foreach ($measurements as $measurement) {
+            $measurement_entry = [];
+            $measurement_entry['date'] = $measurement->getDate()->format('Y-m-d');
+            $measurement_entry['description'] = $measurement->getDescription()->getDescription();
+            $measurement_entry['temperature'] = $measurement->getTemperature();
+            $measurement_entry['feelsLike'] = $measurement->getFeelsLike();
+            $measurement_entry['tempMin'] = $measurement->getTempMin();
+            $measurement_entry['tempMax'] = $measurement->getTempMax();
+            $measurement_entry['pressure'] = $measurement->getPressure();
+            $measurement_entry['precipitation'] = $measurement->getPrecipitation();
+            $measurement_entry['rain'] = $measurement->getRain();
+            $measurement_entry['snow'] = $measurement->getSnow();
+            $measurement_entry['clouds'] = $measurement->getClouds();
+            $measurement_entry['humidity'] = $measurement->getHumidity();
+            $measurement_entry['windSpeed'] = $measurement->getWindSpeed();
+            $measurement_entry['windGustSpeed'] = $measurement->getWindGustSpeed();
+            $measurement_entry['windDirection'] = $measurement->getWindDirection();
+            $measurements_array[] = $measurement_entry;
         }
-
-        if ($input->getOption('option1')) {
-            // ...
-        }
-
-        $io->success('You have a new command! Now make it your own! Pass --help to see your options.');
-
+        $output->writeln(json_encode([
+            'country' => $country,
+            'city' => $city,
+            'weather' => $measurements_array,
+        ]));
         return Command::SUCCESS;
     }
 }
